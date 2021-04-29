@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<body>
+<p>Look in the developer console to view the json returned by the asmx.</p>
+<div><button onclick="retrieveData('usa', '6/18/2012', '4/1/2021')" type="button">Retrieve Data</button></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+<script>
+    function retrieveData(countries, startDate, endDate) {
+        const path = `/MyWebService.asmx/RetrieveData?countries='${countries}'&startDate='${startDate}'&endDate='${endDate}'`;
+        $.ajax({
+            type: 'GET',
+            url: path,
+            contentType: 'application/json; charset=utf-8',
+            success: function(data) {
+                console.log(data.d);
+            }
+        });
+    }
+</script>
+</body>
+</html>
